@@ -384,8 +384,9 @@ function generateOdds(len) {
  */
 function getElementByIndices(arr, indices) {
   let res = arr;
-  indices.forEach((item) => {
+  indices.map((item) => {
     res = res[item];
+    return item;
   });
   return res;
 }
@@ -445,8 +446,9 @@ function getIdentityMatrix(n) {
  */
 function getIndicesOfOddNumbers(numbers) {
   const newArr = [];
-  numbers.forEach((item, ind) => {
+  numbers.map((item, ind) => {
     if (item % 2 !== 0) newArr.push(ind);
+    return item;
   });
 
   return newArr;
@@ -502,10 +504,12 @@ function getMaxItems(arr, n) {
  */
 function findCommonElements(arr1, arr2) {
   const resArr = [];
-  arr1.forEach((item) => {
-    arr2.forEach((item2) => {
+  arr1.map((item) => {
+    arr2.map((item2) => {
       if (item === item2) resArr.push(item);
+      return item2;
     });
+    return item;
   });
   return resArr;
 }
@@ -523,9 +527,11 @@ function findCommonElements(arr1, arr2) {
  */
 function findLongestIncreasingSubsequence(nums) {
   let maxLength = 1;
-  nums.forEach((item, ind) => {
+  nums.map((item, ind) => {
+    if (ind === 1) return 1;
     if (item >= nums[ind - 1]) maxLength += 1;
     else maxLength = 1;
+    return 1;
   });
   return maxLength;
 }
@@ -546,8 +552,9 @@ function findLongestIncreasingSubsequence(nums) {
  */
 function propagateItemsByPositionIndex(arr) {
   const res = [];
-  arr.forEach((item, ind) => {
+  arr.map((item, ind) => {
     res.push(new Array(ind + 1).fill(item));
+    return 1;
   });
   return res.flat();
 }
@@ -621,9 +628,9 @@ function sortDigitNamesByNumericOrder(arr) {
 function swapHeadAndTail(arr) {
   if (arr.length <= 1) return arr;
   const middle = Math.floor(arr.length / 2);
-  const isMiddle = middle % 2 === 0 ? 1 : 0;
-  let res = arr.slice(middle + isMiddle);
-  if (isMiddle) res = res.concat(arr[middle]);
+  const isOdd = arr.length % 2 === 1;
+  let res = arr.slice(middle + (isOdd ? 1 : 0));
+  if (isOdd) res = res.concat(arr[middle]);
   return res.concat(arr.slice(0, middle));
 }
 
