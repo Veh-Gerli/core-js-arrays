@@ -383,10 +383,10 @@ function generateOdds(len) {
  *   getElementByIndices([[[ 1, 2, 3]]], [ 0, 0, 1 ]) => 2        (arr[0][0][1])
  */
 function getElementByIndices(arr, indices) {
-    let res = arr;
-    indices.forEach( (item) => {
-      res = res[item];
-  })
+  let res = arr;
+  indices.forEach((item) => {
+    res = res[item];
+  });
   return res;
 }
 
@@ -425,11 +425,11 @@ function getFalsyValuesCount(arr) {
  *                              [0,0,0,0,1]]
  */
 function getIdentityMatrix(n) {
-  return  new Array(n).fill(0).map( (item, ind) => {
-      let arr = new Array(n).fill(0);
-      arr[ind] = 1;
-      return arr;
-  })
+  return new Array(n).fill(0).map((item, ind) => {
+    const arr = new Array(n).fill(0);
+    arr[ind] = 1;
+    return arr;
+  });
 }
 
 /**
@@ -444,12 +444,12 @@ function getIdentityMatrix(n) {
  *    getIndicesOfOddNumbers([11, 22, 33, 44, 55]) => [0, 2, 4]
  */
 function getIndicesOfOddNumbers(numbers) {
-    let newArr = [];
-    numbers.forEach((item, ind) => {
-     if (item % 2 !== 0) newArr.push(ind);
-     })
-     
- return newArr;
+  const newArr = [];
+  numbers.forEach((item, ind) => {
+    if (item % 2 !== 0) newArr.push(ind);
+  });
+
+  return newArr;
 }
 
 /**
@@ -463,9 +463,9 @@ function getIndicesOfOddNumbers(numbers) {
  *    getHexRGBValues([]) => []
  */
 function getHexRGBValues(arr) {
-  return arr.map(num => {
-    num = Math.max(0, Math.min(16777215, num));
-    const hex = num.toString(16).padStart(6, '0').toUpperCase();
+  return arr.map((num) => {
+    const sum = Math.max(0, Math.min(16777215, num));
+    const hex = sum.toString(16).padStart(6, '0').toUpperCase();
     return `#${hex}`;
   });
 }
@@ -485,7 +485,7 @@ function getHexRGBValues(arr) {
  *   getMaxItems([ 10, 10, 10, 10 ], 3) => [ 10, 10, 10 ]
  */
 function getMaxItems(arr, n) {
-  return arr.sort((a,b) => b-a).slice(0,n);
+  return arr.sort((a, b) => b - a).slice(0, n);
 }
 
 /**
@@ -501,13 +501,13 @@ function getMaxItems(arr, n) {
  *    findCommonElements([1, 2, 3], ['a', 'b', 'c']) => []
  */
 function findCommonElements(arr1, arr2) {
-    let resArr = [];
-    arr1.forEach( (item, index) => {
-        arr2.forEach (item2 => {
-            if (item === item2) resArr.push(item);
-        })
-    })
-    return resArr;
+  const resArr = [];
+  arr1.forEach((item) => {
+    arr2.forEach((item2) => {
+      if (item === item2) resArr.push(item);
+    });
+  });
+  return resArr;
 }
 
 /**
@@ -524,9 +524,9 @@ function findCommonElements(arr1, arr2) {
 function findLongestIncreasingSubsequence(nums) {
   let maxLength = 1;
   nums.forEach((item, ind) => {
-      if (item >= nums[ind-1]) maxLength++;
-      else maxLength = 1;
-  })
+    if (item >= nums[ind - 1]) maxLength += 1;
+    else maxLength = 1;
+  });
   return maxLength;
 }
 
@@ -545,10 +545,10 @@ function findLongestIncreasingSubsequence(nums) {
  *  propagateItemsByPositionIndex([ 1,2,3,4,5 ]) => [ 1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5 ]
  */
 function propagateItemsByPositionIndex(arr) {
-  let res = [];
-  arr.forEach( (item, ind) => {
-      res.push(new Array(ind+1).fill(item));
-  })
+  const res = [];
+  arr.forEach((item, ind) => {
+    res.push(new Array(ind + 1).fill(item));
+  });
   return res.flat();
 }
 
@@ -583,20 +583,20 @@ function shiftArray(arr, n) {
  *   sortDigitNamesByNumericOrder([ 'one','one','one','zero' ]) => [ 'zero','one','one','one' ]
  */
 function sortDigitNamesByNumericOrder(arr) {
-    const map = {
-        'zero': 0,
-        'one': 1,
-        'two': 2,
-        'three': 3,
-        'four': 4,
-        'five': 5,
-        'six': 6,
-        'seven': 7,
-        'eight': 8,
-        'nine': 9
-    };
-    
-    return arr.sort((a,b) => map[a] - map[b])
+  const map = {
+    zero: 0,
+    one: 1,
+    two: 2,
+    three: 3,
+    four: 4,
+    five: 5,
+    six: 6,
+    seven: 7,
+    eight: 8,
+    nine: 9,
+  };
+
+  return arr.sort((a, b) => map[a] - map[b]);
 }
 
 /**
@@ -618,13 +618,13 @@ function sortDigitNamesByNumericOrder(arr) {
  *   swapHeadAndTail([]) => []
  *
  */
-function swapHeadAndTail( arr) {
- if (arr.length <= 1) return arr;
- let middle = Math.floor(arr.length / 2);
- let isMiddle = middle % 2 === 0 ? 1 : 0;
- let res = arr.slice(middle + isMiddle);
- if (isMiddle) res = res.concat(arr[middle]);
- return res.concat(arr.slice(0, middle))
+function swapHeadAndTail(arr) {
+  if (arr.length <= 1) return arr;
+  const middle = Math.floor(arr.length / 2);
+  const isMiddle = middle % 2 === 0 ? 1 : 0;
+  let res = arr.slice(middle + isMiddle);
+  if (isMiddle) res = res.concat(arr[middle]);
+  return res.concat(arr.slice(0, middle));
 }
 
 module.exports = {
