@@ -527,11 +527,18 @@ function findCommonElements(arr1, arr2) {
  */
 function findLongestIncreasingSubsequence(nums) {
   let maxLength = 1;
+  let curLength = 1;
   nums.map((item, ind) => {
-    if (ind === 1) return 1;
-    if (item >= nums[ind - 1]) maxLength += 1;
-    else maxLength = 1;
-    return 1;
+    if (ind === 0) return item;
+    if (item > nums[ind - 1]) curLength += 1;
+    else {
+      curLength = 1;
+    }
+
+    if (curLength > maxLength) {
+      maxLength = curLength;
+    }
+    return item;
   });
   return maxLength;
 }
